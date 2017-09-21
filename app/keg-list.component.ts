@@ -19,6 +19,7 @@ import { Keg } from './keg.model';
 export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
+  filterByCompleteness: string = "incompleteTasks";
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
@@ -32,6 +33,10 @@ export class KegListComponent {
     } else {
       return "bg-warning";
     }
+  }
+
+  onChange(optionFromMenu) {
+    this.filterByCompleteness = optionFromMenu;
   }
 
   isDone(clickedKeg: Keg) {
